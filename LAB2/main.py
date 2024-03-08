@@ -112,6 +112,7 @@ Extend the previous Python program to demonstrate the manipulation of lists usin
 """
 
 # Input
+
 input_numbers = input("Enter a series of space-separated integers: ")
 
 # Convert Input
