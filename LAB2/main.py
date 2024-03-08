@@ -113,52 +113,43 @@ Extend the previous Python program to demonstrate the manipulation of lists usin
 
 # Input
 
+
+# Input
 input_numbers = input("Enter a series of space-separated integers: ")
 
 # Convert Input
 numbers_list = list(map(int, input_numbers.split()))
 numbers_tuple = tuple(numbers_list)
-numbers_set = set(numbers_list)
-numbers_dict = {num: num*num for num in numbers_list}
 
 # Manipulate List
 # Append 10 to the list
 numbers_list.append(10)
 # Insert 20 at index 2
 numbers_list.insert(2, 20)
-# Remove the element 8
-if 8 in numbers_list:
-    numbers_list.remove(8)
+# Remove one element from the list
+numbers_list.remove(numbers_list[3])
 
 # Attempt to Modify Tuple (this will raise an error)
 try:
+    # Append 10 to the tuple
     numbers_tuple.append(10)
 except AttributeError:
     print("Tuples are immutable and cannot be modified.")
-
-# Set Operations
-# Union
-set_union = numbers_set.union({10, 11, 12})
-# Intersection
-set_intersection = numbers_set.intersection({5, 8, 15, 20})
-# Difference
-set_difference = numbers_set.difference({2, 9})
-
-# Dictionary Operations
-print("Original Dictionary:", numbers_dict)
-# Add a new key-value pair
-numbers_dict[11] = 121
-# Delete an existing key-value pair
-if 8 in numbers_dict:
-    del numbers_dict[8]
+try:
+    # Insert 20 at index 2
+    numbers_tuple.insert(2, 20)
+except AttributeError:
+    pass  # Insert operation will also raise an error
+try:
+    # Remove one element from the tuple
+    numbers_tuple.remove(numbers_tuple[3])
+except AttributeError:
+    pass  # Remove operation will also raise an error
 
 # Print Output
 print("Modified list:", numbers_list)
 print("Tuple remains unchanged:", numbers_tuple)
-print("Union of set:", set_union)
-print("Intersection of set:", set_intersection)
-print("Difference of set:", set_difference)
-print("Updated Dictionary:", numbers_dict)
+
 
 
 """--------------------------------------------------------------------------------
@@ -216,31 +207,44 @@ Additionally, introduce sets and dictionaries and perform basic operations on th
   ```
 """
 
-# Input
 input_numbers = input("Enter a series of space-separated integers: ")
 
 # Convert Input
+numbers_list = list(map(int, input_numbers.split()))
+numbers_tuple = tuple(numbers_list)
+numbers_set = set(numbers_list)
+numbers_dict = {num: num*num for num in numbers_list}
 
 # Manipulate List
 # Append 10 to the list
+numbers_list.append(10)
 # Insert 20 at index 2
+numbers_list.insert(2, 20)
 # Remove the element 8
+if 8 in numbers_list:
+    numbers_list.remove(8)
 
 # Attempt to Modify Tuple (this will raise an error)
 try:
-    # Append 10 to the tuple
+    numbers_tuple.append(10)
 except AttributeError:
     print("Tuples are immutable and cannot be modified.")
 
 # Set Operations
 # Union
+set_union = numbers_set.union({10, 11, 12})
 # Intersection
+set_intersection = numbers_set.intersection({5, 8, 15, 20})
 # Difference
+set_difference = numbers_set.difference({2, 9})
 
 # Dictionary Operations
 print("Original Dictionary:", numbers_dict)
 # Add a new key-value pair
+numbers_dict[11] = 121
 # Delete an existing key-value pair
+if 8 in numbers_dict:
+    del numbers_dict[8]
 
 # Print Output
 print("Modified list:", numbers_list)
@@ -249,6 +253,7 @@ print("Union of set:", set_union)
 print("Intersection of set:", set_intersection)
 print("Difference of set:", set_difference)
 print("Updated Dictionary:", numbers_dict)
+
 
 """7. **Built-in Types and Type Conversion**
 
