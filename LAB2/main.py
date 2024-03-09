@@ -387,54 +387,112 @@ Extend the previous Python program to write the output to a file and perform ope
 input_numbers = input("Enter a series of space-separated integers: ")
 
 # Convert Input
+numbers_list = list(map(int, input_numbers.split()))
+numbers_tuple = tuple(numbers_list)
+numbers_set = set(numbers_list)
+numbers_dict = {num: num*num for num in numbers_list}
 
 # Manipulate List
+# Append 10 to the list
+numbers_list.append(10)
+# Insert 20 at index 2
+numbers_list.insert(2, 20)
+# Remove the element 8
+if 8 in numbers_list:
+    numbers_list.remove(8)
 
 # Attempt to Modify Tuple (this will raise an error)
+try:
+    numbers_tuple.append(10)
+except AttributeError:
+    print("Tuples are immutable and cannot be modified.")
 
 # Set Operations
+# Union
+set_union = numbers_set.union({10, 11, 12})
+# Intersection
+set_intersection = numbers_set.intersection({5, 8, 15, 20})
+# Difference
+set_difference = numbers_set.difference({2, 9})
 
 # Dictionary Operations
+print("Original Dictionary:", numbers_dict)
+# Add a new key-value pair
+numbers_dict[11] = 121
+# Delete an existing key-value pair
+if 8 in numbers_dict:
+    del numbers_dict[8]
 
 # Type Conversion
+list_to_tuple = tuple(numbers_list)
+list_to_set = set(numbers_list)
+list_to_dict = {num: num*num for num in numbers_list}
+tuple_to_list = list(numbers_tuple)
+tuple_to_set = set(numbers_tuple)
+tuple_to_dict = {num: num*num for num in numbers_tuple}
+set_to_list = list(numbers_set)
+set_to_tuple = tuple(numbers_set)
+set_to_dict = {num: num*num for num in numbers_set}
+dict_to_list = list(numbers_dict.keys())
+dict_to_tuple = tuple(numbers_dict.keys())
+dict_to_set = set(numbers_dict.keys())
 
-student_number = input("Enter your student number: ")
-
-# Write Output to File like this:
-    "Student Number: " + student_number
-
-    "Original List: " + str(numbers_list)
-    "Original Tuple: " + str(numbers_tuple)
-    "Original Set: " + str(numbers_set)
-    "Original Dictionary: " + str(numbers_dict)
-
-    "Manipulated List: " + str(numbers_list)
-    "Manipulated Tuple: " + str(numbers_tuple)
-    "Union of Set: " + str(set_union)
-    "Intersection of Set: " + str(set_intersection)
-    "Difference of Set: " + str(set_difference)
-    "Updated Dictionary: " + str(numbers_dict)
-
-    "List to Tuple: " + str(list_to_tuple)
-    "List to Set: " + str(list_to_set)
-    "List to Dictionary: " + str(list_to_dict)
-    "Tuple to List: " + str(tuple_to_list)
-    "Tuple to Set: " + str(tuple_to_set)
-    "Tuple to Dictionary: " + str(tuple_to_dict)
-    "Set to List: " + str(set_to_list)
-    "Set to Tuple: " + str(set_to_tuple)
-    "Set to Dictionary: " + str(set_to_dict)
-    "Dictionary to List: " + str(dict_to_list)
-    "Dictionary to Tuple: " + str(dict_to_tuple)
+file_content = [
+    "Original List: " + str(numbers_list),
+    "Original Tuple: " + str(numbers_tuple),
+    "Original Set: " + str(numbers_set),
+    "Original Dictionary: " + str(numbers_dict),
+    "",
+    "Manipulated List: " + str(numbers_list),
+    "Manipulated Tuple: " + str(numbers_tuple),
+    "Union of Set: " + str(set_union),
+    "Intersection of Set: " + str(set_intersection),
+    "Difference of Set: " + str(set_difference),
+    "Updated Dictionary: " + str(numbers_dict),
+    "",
+    "List to Tuple: " + str(list_to_tuple),
+    "List to Set: " + str(list_to_set),
+    "List to Dictionary: " + str(list_to_dict),
+    "Tuple to List: " + str(tuple_to_list),
+    "Tuple to Set: " + str(tuple_to_set),
+    "Tuple to Dictionary: " + str(tuple_to_dict),
+    "Set to List: " + str(set_to_list),
+    "Set to Tuple: " + str(set_to_tuple),
+    "Set to Dictionary: " + str(set_to_dict),
+    "Dictionary to List: " + str(dict_to_list),
+    "Dictionary to Tuple: " + str(dict_to_tuple),
     "Dictionary to Set: " + str(dict_to_set)
+]
 
-# print "Content of the file:"
+with open("output.txt", "w") as f:
+    for line in file_content:
+        f.write(line + "\n")
 
-# Perform Operations on File:
-#   Count the number of lines in the file
-#   Count the number of integers in the file
-#   Add all integers in the file (sum).
-#   Modify the content of the file
+# Perform Operations on File
+with open("output.txt", "r") as f:
+    file_content = f.readlines()
+line_count = len(file_content)
+
+int_count = sum(line.count(' ') for line in file_content)
+
+total_sum = sum(int(num) for num in numbers_list)
+
+file_content[0] = "Welcome to output file\n"
+
+
+with open("output.txt", "w") as f:
+    for line in file_content:
+        f.write(line)
+
+print("Content of the file:")
+with open("output.txt", "r") as f:
+    for line in f:
+        print(line.strip())
+
+print("Number of lines in the file:", line_count)
+print("Number of integers in the file:", int_count)
+print("Sum of integers in the file:", total_sum)
+
 
 """--------------------------------------------------------------------------------
 **Control Statements:**
